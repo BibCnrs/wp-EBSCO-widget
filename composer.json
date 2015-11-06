@@ -1,0 +1,15 @@
+{
+    "repositories": [
+    ],
+    "require-dev": {
+    },
+    "require": {
+        "firebase/php-jwt": "3.0.0"
+    },
+    "extra": {
+        "installer-paths": {
+            "wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
+            "wp-content/themes/{$name}/": ["type:wordpress-theme"]
+        }
+    }
+}

@@ -1,0 +1,25 @@
+npm:
+  image: node:4.1.2
+  environment:
+    http_proxy: ${http_proxy}
+  volumes:
+    - .:/app
+  working_dir: /app
+  entrypoint: ['npm']
+
+composer:
+  image: composer/composer:1.0.0-alpha10
+  environment:
+    http_proxy: ${http_proxy}
+  volumes:
+    - $PWD:/app
+
+wordpress:
+  image: kaihofstetter/wordpress-cli:4.3.1
+  volumes:
+    - ./:/var/www/html/wp-content/plugins
+  environment:
+    WP_URL: localhost:8082
+  ports:
+    - 8082:80
+    - 3306:3306
