@@ -10,8 +10,6 @@ Author URI: https://github.com/BibCnrs/BibCnrs
 
 namespace WpEbscoWidget\Classes;
 
-echo 'loading';
-
 use \Firebase\JWT\JWT;
 
 class EbscoWidget
@@ -73,11 +71,8 @@ class EbscoWidget
     {
         extract(shortcode_atts(array(), $atts));
         $this->_enqueue();
-        ob_start();
-        ?>
-            <div id="ebsco-widget"></div>
-        <?php
-        return ob_get_clean();
+
+        require EBSCO_WIDGET__VIEW_PATH . 'shortcode.php';
     }
 
     /**
@@ -148,14 +143,8 @@ class EbscoWidget
         array_walk( $atts, function( &$item, $key ) {
             $item = esc_attr( $key ) . '="' . esc_attr( $item ) . '"';
         } );
-        ?>
-        <label>
-            <input <?php echo implode( ' ', $atts ); ?> />
-            <?php if ( array_key_exists( 'description', $options ) ) : ?>
-            <?php esc_html_e( $options['description'] ); ?>
-            <?php endif; ?>
-        </label>
-        <?php
+
+        require EBSCO_WIDGET__VIEW_PATH . 'settings.php';
     }
 
     /**
@@ -165,19 +154,19 @@ class EbscoWidget
      * @param array $input
      * @return array
      */
-    public function settings_validate( $input )
+    public function settings_validate($input)
     {
         $errors = array();
-        foreach ( $input AS $key => $value ) {
-            if ( $value == '' ) {
-                unset( $input[$key] );
+        foreach ($input AS $key => $value) {
+            if ($value == '') {
+                unset($input[$key]);
                 continue;
             }
             $validator = false;
-            if ( isset( $this->settings[$key]['validator'] ) ) {
+            if (isset( $this->settings[$key]['validator'])) {
                 $validator = $this->settings[$key]['validator'];
             }
-            switch ( $validator ) {
+            switch ($validator) {
                 case 'url':
                     $pattern = '/^http(s)?:\/\/.*$/';
                     if ( preg_match($pattern, $value) ) {
@@ -192,11 +181,11 @@ class EbscoWidget
                 break;
             }
         }
-        if ( count( $errors ) > 0 ) {
+        if (count($errors) > 0) {
             add_settings_error(
                 $this->tag,
                 $this->tag,
-                implode( '<br />', $errors ),
+                implode('<br />',$errors),
                 'error'
             );
         }
@@ -215,8 +204,8 @@ class EbscoWidget
             );
             wp_enqueue_style($this->tag);
         }
-        // Enqueue the scripts if not already...
 
+        // Enqueue the scripts if not already...
         if (!wp_script_is($this->tag, 'enqueued')) {
             wp_register_script(
                 $this->tag,
@@ -240,9 +229,9 @@ class EbscoWidget
             // add url attribute on script tag
             add_filter( 'script_loader_tag', function ( $tag, $handle ) use ($term, $token) {
                 if ( $handle !== 'ebsco_widget-index' ) return $tag;
-                return str_replace( ' src', ' id="'. $handle .'" data-url="' . ($this->options['url']) . '" data-term="' . $term . '" data-token="' . $token . '" src', $tag );
+                return str_replace(' src', ' id="' . $handle . '" data-url="' . ($this->options['url']) . '" data-term="' . $term . '" data-token="' . $token . '" src', $tag );
             }, 10, 2 );
-            wp_enqueue_script($this->tag.'-index');
+            wp_enqueue_script($this->tag . '-index');
         }
     }
 }

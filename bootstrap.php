@@ -1,5 +1,6 @@
 <?php
 namespace WpEbscoWidget;
+
 if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     require __DIR__ . '/vendor/autoload.php';
 }
@@ -18,6 +19,7 @@ function autoload($className)
 
     $path = EBSCO_WIDGET__PLUGIN_PATH .
         str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
-
-    require_once($path);
+    if (file_exists($path)) {
+        require_once($path);
+    }
 }
