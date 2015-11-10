@@ -17,8 +17,9 @@ composer:
 wordpress:
   image: kaihofstetter/wordpress-cli:4.3.1
   volumes:
-    - ./:/var/www/html/wp-content/plugins
+    - ./:/var/www/html/wp-content/plugins/wp-ebsco-widget
   environment:
+    http_proxy: ${http_proxy}
     WP_URL: localhost:8082
   ports:
     - 8082:80
