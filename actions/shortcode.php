@@ -43,15 +43,15 @@ $shortcode = function ($atts, $content = null)
         if (session_id()) {
             $token = JWT::encode(array(user => 'tester'), $options['secret']);
         }
-        $term = get_query_var('term');
+        $term = urldecode(get_query_var('search_term'));
         // add url attribute on script tag
-        add_filter('script_loader_tag', function ( $tag, $handle ) use ($term, $token) {
+        add_filter('script_loader_tag', function ( $tag, $handle ) use ($term, $token, $config, $options) {
             if ( $handle !== 'ebsco_widget-index' ) return $tag;
             $addedAttr = sprintf(' id="%s" data-url="%s" data-term="%s" data-token="%s" src', $handle, $options['url'], $term, $token);
 
             return str_replace(' src', $addedAttr, $tag);
         }, 10, 2);
-        wp_enqueue_script($config->tag . '-index');
+        wp_enqueue_script('ebsco_widget-index');
     }
     require EBSCO_WIDGET__VIEW . 'shortcode.php';
 };

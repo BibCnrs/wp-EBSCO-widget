@@ -47,6 +47,7 @@ $settings_field = function ( array $options = array() )
  */
 $settings_validate = function ($input)
 {
+    require EBSCO_WIDGET__PATH . 'config.php';
     $errors = array();
     foreach ($input AS $key => $value) {
         if ($value == '') {
@@ -54,8 +55,8 @@ $settings_validate = function ($input)
             continue;
         }
         $validator = false;
-        if (isset( $this->settings[$key]['validator'])) {
-            $validator = $this->settings[$key]['validator'];
+        if (isset( $config->settings[$key]['validator'])) {
+            $validator = $config->settings[$key]['validator'];
         }
         switch ($validator) {
             case 'url':
@@ -74,8 +75,8 @@ $settings_validate = function ($input)
     }
     if (count($errors) > 0) {
         add_settings_error(
-            $this->tag,
-            $this->tag,
+            $config->tag,
+            $config->tag,
             implode('<br />',$errors),
             'error'
         );
@@ -91,6 +92,7 @@ $admin_init = function () use($settings_field, $settings_validate)
 {
     require EBSCO_WIDGET__PATH . 'config.php';
     $section = 'general';
+    global $wp;
     add_settings_section(
         $config->tag . '_settings_section',
         sprintf('Réglages pour %s', $config->name),
