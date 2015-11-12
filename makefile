@@ -1,4 +1,4 @@
-.PHONY: composer npm run-dev stop
+.PHONY: composer npm run-dev stop test
 
 # If the first argument is one of the supported commands...
 SUPPORTED_COMMANDS := composer npm
@@ -22,3 +22,6 @@ npm:
 
 run-dev:
 	docker-compose up
+
+test:
+	docker-compose run phpunit test
