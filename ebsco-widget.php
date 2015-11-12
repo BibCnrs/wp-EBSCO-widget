@@ -10,13 +10,20 @@ Author URI: https://github.com/BibCnrs/BibCnrs
 
 defined('ABSPATH') or die('Plugin file cannot be accessed directly.');
 
-define('EBSCO_WIDGET__PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('EBSCO_WIDGET__PLUGIN_URL', plugin_dir_url(__FILE__));
-define('EBSCO_WIDGET__VIEW_PATH', EBSCO_WIDGET__PLUGIN_PATH . 'views' . DIRECTORY_SEPARATOR);
+define('EBSCO_WIDGET__PATH', plugin_dir_path(__FILE__));
+define('EBSCO_WIDGET__URL', plugin_dir_url(__FILE__));
+define('EBSCO_WIDGET__VIEW', EBSCO_WIDGET__PATH . 'views' . DIRECTORY_SEPARATOR);
 
-require_once(EBSCO_WIDGET__PLUGIN_PATH . 'bootstrap.php');
+require_once(EBSCO_WIDGET__PATH . 'bootstrap.php');
 
-use \Firebase\JWT\JWT;
-use WpEbscoWidget\classes\EbscoWidget;
+function init() {
+    require EBSCO_WIDGET__PATH . 'config.php';
+    require EBSCO_WIDGET__PATH . 'actions' . DIRECTORY_SEPARATOR . 'shortcode.php';
+    add_shortcode($config->tag, $shortcode);
+    if (is_admin()) {
+        require EBSCO_WIDGET__PATH . 'actions' . DIRECTORY_SEPARATOR . 'admin_init.php';
+        add_action('admin_init', $admin_init);
+    }
+}
 
-new EbscoWidget();
+add_action('init', 'init');
