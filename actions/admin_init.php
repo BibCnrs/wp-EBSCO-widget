@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Append a settings field to the the fields section.
+ * Append a settings field to the fields section.
  *
  * @param array $args
  */
-$settings_field = function ( array $options = array() )
+$addSettingsField = function ( array $options = array() )
 {
     require EBSCO_WIDGET__PATH . 'config.php';
     $pluginOptions = get_option($config->tag);
@@ -22,12 +22,6 @@ $settings_field = function ( array $options = array() )
     if (isset( $options['placeholder'])) {
         $atts['placeholder'] = $options['placeholder'];
     }
-    if (isset( $options['type'] ) && $options['type'] == 'checkbox') {
-        if ($atts['value']) {
-            $atts['checked'] = 'checked';
-        }
-        $atts['value'] = true;
-    }
     if (isset($options['type']) && $options['type'] == 'url') {
         $atts['type'] = 'url';
         $atts['class'] = 'regular-text code';
@@ -39,62 +33,19 @@ $settings_field = function ( array $options = array() )
     require EBSCO_WIDGET__VIEW . 'settings.php';
 };
 
-/**
- * Validate the settings saved.
- *
- * @param array $input
- * @return array
- */
-$settings_validate = function ($input)
-{
-    require EBSCO_WIDGET__PATH . 'config.php';
-    $errors = array();
-    foreach ($input AS $key => $value) {
-        if ($value == '') {
-            unset($input[$key]);
-            continue;
-        }
-        $validator = false;
-        if (isset( $config->settings[$key]['validator'])) {
-            $validator = $config->settings[$key]['validator'];
-        }
-        switch ($validator) {
-            case 'url':
-                $pattern = '/^http(s)?:\/\/.*$/';
-                if (preg_match($pattern, $value)) {
-                    $input[$key] = $value;
-                } else {
-                    $errors[] = sprintf('%s doit être un url valide.', $key);
-                    unset($input[$key]);
-                }
-            break;
-            default:
-                 $input[$key] = strip_tags($value);
-            break;
-        }
-    }
-    if (count($errors) > 0) {
-        add_settings_error(
-            $config->tag,
-            $config->tag,
-            implode('<br />',$errors),
-            'error'
-        );
-    }
-    return $input;
-};
+require 'validate-settings.php';
 
 /**
  * Add the setting fields to the Reading settings page.
  *
  */
-$admin_init = function () use($settings_field, $settings_validate)
+$admin_init = function () use($addSettingsField, $validateSettings)
 {
     require EBSCO_WIDGET__PATH . 'config.php';
     $section = 'general';
-    global $wp;
+    $settingSection = sprintf('Réglages pour %s', $config->name);
     add_settings_section(
-        $config->tag . '_settings_section',
+        $settingSection,
         sprintf('Réglages pour %s', $config->name),
         function () use ($config) {
             echo sprintf('<p>Options de configurations pour le plugin %s.</p>', esc_html($config->name));
@@ -106,15 +57,15 @@ $admin_init = function () use($settings_field, $settings_validate)
         add_settings_field(
             sprintf('%s_%s_settings', $config->tag, $id),
             $id,
-            $settings_field,
+            $addSettingsField,
             $section,
-            $config->tag . '_settings_section',
+            $settingSection,
             $options
         );
     }
     register_setting(
         $section,
         $config->tag,
-        $settings_validate
+        $validateSettings
     );
 };

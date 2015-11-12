@@ -13,8 +13,8 @@ $config = (object)[
         ],
         'secret' => [
             'description' => 'Secret to encode jwt token used by the widget to access the api.',
+            'validator' => 'password',
             'type' => 'password',
-            'placeholder' => ''
         ]
     ]
 ];
