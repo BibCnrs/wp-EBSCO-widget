@@ -16,5 +16,9 @@ $config = (object)[
             'validator' => 'password',
             'type' => 'password',
         ]
-    ]
+    ],
+    'home' => plugin_dir_path(__FILE__),
+    'url' => plugin_dir_url(__FILE__),
+    'views' => plugin_dir_path(__FILE__). 'views' . DIRECTORY_SEPARATOR,
+    'actions' => plugin_dir_path(__FILE__). 'actions' . DIRECTORY_SEPARATOR
 ];

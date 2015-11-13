@@ -10,24 +10,20 @@ Author URI: https://github.com/BibCnrs/BibCnrs
 
 defined('ABSPATH') or die('Plugin file cannot be accessed directly.');
 
-define('EBSCO_WIDGET__PATH', plugin_dir_path(__FILE__));
-define('EBSCO_WIDGET__URL', plugin_dir_url(__FILE__));
-define('EBSCO_WIDGET__VIEW', EBSCO_WIDGET__PATH . 'views' . DIRECTORY_SEPARATOR);
+require_once('bootstrap.php');
+require_once 'config.php';
 
-require_once(EBSCO_WIDGET__PATH . 'bootstrap.php');
-
-function init() {
-    require EBSCO_WIDGET__PATH . 'config.php';
-    require EBSCO_WIDGET__PATH . 'actions' . DIRECTORY_SEPARATOR . 'shortcode.php';
+$init = function () use($config) {
+    require $config->actions . 'shortcode.php';
     add_filter('query_vars', function ($vars) {
         $vars[] = 'search_term';
         return $vars;
     });
-    add_shortcode($config->tag, $shortcode);
+    add_shortcode($config->tag, $getShortcode($config));
     if (is_admin()) {
-        require EBSCO_WIDGET__PATH . 'actions' . DIRECTORY_SEPARATOR . 'admin_init.php';
-        add_action('admin_init', $admin_init);
+        require $config->actions . 'admin_init.php';
+        add_action('admin_init', $getAdminInit($config));
     }
-}
+};
 
-add_action('init', 'init');
+add_action('init', $init);
