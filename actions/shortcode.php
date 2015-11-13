@@ -18,7 +18,7 @@ $getShortcode = function ($config) {
 
             wp_register_style(
                 $config->tag,
-                $config->url . 'javascripts/EBSCO-widget/build/app.css'
+                $config->url . 'node_modules/ebsco-widget/build/app.css'
             );
             wp_enqueue_style($config->tag);
         }
@@ -27,14 +27,14 @@ $getShortcode = function ($config) {
         if (!wp_script_is($config->tag, 'enqueued')) {
             wp_register_script(
                 $config->tag,
-                $config->url . 'javascripts/EBSCO-widget/build/app.js',
+                $config->url . 'node_modules/ebsco-widget/build/app.js',
                 array(),
                 $config->version,
                 true
             );
             wp_register_script(
                 $config->tag.'-index',
-                $config->url . "javascripts/index.js",
+                $config->url . 'javascripts/index.js',
                 array('jquery', $config->tag),
                 $config->version,
                 true
