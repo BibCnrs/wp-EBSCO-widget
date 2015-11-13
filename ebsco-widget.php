@@ -10,8 +10,16 @@ Author URI: https://github.com/BibCnrs/BibCnrs
 
 defined('ABSPATH') or die('Plugin file cannot be accessed directly.');
 
-require_once('bootstrap.php');
 require_once 'config.php';
+
+// in development
+if (file_exists($config->home . '/vendor/autoload.php')) {
+    require $config->home . '/vendor/autoload.php';
+}
+// when loaded as a plugin
+if (file_exists(realpath($config->home.'../../../').'/vendor/autoload.php')) {
+    require realpath($config->home.'../../../').'/vendor/autoload.php';
+}
 
 $init = function () use($config) {
     require $config->actions . 'shortcode.php';

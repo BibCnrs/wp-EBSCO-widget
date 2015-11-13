@@ -1,5 +1,5 @@
 <?php
-
+use \Firebase\JWT\JWT;
 /**
  * [ebsco-widget] shortcode action
  *
@@ -18,7 +18,7 @@ $getShortcode = function ($config) {
 
             wp_register_style(
                 $config->tag,
-                $config->url . 'node_modules/ebsco-widget/build/app.css'
+                $config->url . 'javascripts/EBSCO-widget/build/app.css'
             );
             wp_enqueue_style($config->tag);
         }
@@ -27,7 +27,7 @@ $getShortcode = function ($config) {
         if (!wp_script_is($config->tag, 'enqueued')) {
             wp_register_script(
                 $config->tag,
-                $config->url . 'node_modules/ebsco-widget/build/app.js',
+                $config->url . 'javascripts/EBSCO-widget/build/app.js',
                 array(),
                 $config->version,
                 true
