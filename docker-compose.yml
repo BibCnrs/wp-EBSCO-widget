@@ -2,6 +2,7 @@ npm:
   image: node:4.1.2
   environment:
     http_proxy: ${http_proxy}
+    https_proxy: ${https_proxy}
   volumes:
     - .:/app
   working_dir: /app
