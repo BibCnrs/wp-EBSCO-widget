@@ -12,13 +12,16 @@ defined('ABSPATH') or die('Plugin file cannot be accessed directly.');
 
 require_once 'config.php';
 
-// in development
-if (file_exists($config->home . '/vendor/autoload.php')) {
-    require $config->home . '/vendor/autoload.php';
-}
-// when loaded as a plugin
-if (file_exists(realpath($config->home.'../../../').'/vendor/autoload.php')) {
-    require realpath($config->home.'../../../').'/vendor/autoload.php';
+// we look for Composer files first in the plugins dir.
+// then in the wp-content dir (site install).
+// and finally in the current themes directories.
+if (   file_exists( $composer_autoload = __DIR__ . '/vendor/autoload.php' ) /* check in self */
+	|| file_exists( $composer_autoload = WP_CONTENT_DIR.'/vendor/autoload.php') /* check in wp-content */
+	|| file_exists( $composer_autoload = plugin_dir_path( __FILE__ ).'vendor/autoload.php') /* check in plugin directory */
+	|| file_exists( $composer_autoload = get_stylesheet_directory().'/vendor/autoload.php') /* check in child theme */
+	|| file_exists( $composer_autoload = get_template_directory().'/vendor/autoload.php') /* check in parent theme */
+	) {
+	require_once $composer_autoload;
 }
 
 $init = function () use($config) {
