@@ -59,8 +59,14 @@ export default function createStore(reducer, initialState) {
    */
   function subscribe(listener) {
     listeners.push(listener);
+    var isSubscribed = true;
 
     return function unsubscribe() {
+      if (!isSubscribed) {
+        return;
+      }
+
+      isSubscribed = false;
       var index = listeners.indexOf(listener);
       listeners.splice(index, 1);
     };

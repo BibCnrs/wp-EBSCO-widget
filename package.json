@@ -14,7 +14,7 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BibCnrs/wp-EBSCO-widget/issues"
-  },
+},
   "dependencies": {
     "ebsco-widget": "https://github.com/BibCnrs/EBSCO-widget.git"
   },
