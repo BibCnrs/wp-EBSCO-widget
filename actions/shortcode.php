@@ -41,7 +41,7 @@ $getShortcode = function ($config) {
             );
             $token = null;
             if (session_id()) {
-                $token = JWT::encode(array(user => 'tester'), $options['secret']);
+                $token = JWT::encode(array('user' => 'tester'), $options['secret']);
             }
             $term = urldecode(get_query_var('search_term'));
             // add url attribute on script tag
