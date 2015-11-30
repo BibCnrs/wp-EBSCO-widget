@@ -16,7 +16,7 @@
     "url": "https://github.com/BibCnrs/wp-EBSCO-widget/issues"
 },
   "dependencies": {
-    "ebsco-widget": "0.2.2"
+    "ebsco-widget": "0.2.6"
   },
   "homepage": "https://github.com/BibCnrs/wp-EBSCO-widget#readme"
 }
