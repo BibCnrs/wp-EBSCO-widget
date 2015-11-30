@@ -1,6 +1,6 @@
 {
   "name": "wb-ebsco-widget",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Wordpress plugin for EBSCO widget",
   "main": "index.js",
   "scripts": {
