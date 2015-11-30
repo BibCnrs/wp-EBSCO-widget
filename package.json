@@ -1,6 +1,6 @@
 {
   "name": "wb-ebsco-widget",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Wordpress plugin for EBSCO widget",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "url": "https://github.com/BibCnrs/wp-EBSCO-widget/issues"
 },
   "dependencies": {
-    "ebsco-widget": "0.2.6"
+    "ebsco-widget": "0.2.7"
   },
   "homepage": "https://github.com/BibCnrs/wp-EBSCO-widget#readme"
 }
