@@ -40,7 +40,7 @@ $getShortcode = function ($config) {
                 true
             );
             $token = null;
-            if (session_id()) {
+            if (is_user_logged_in()) {
                 $token = JWT::encode(array('user' => 'tester'), $options['secret']);
             }
             $term = urldecode(get_query_var('search_term'));
