@@ -1,15 +1,12 @@
 sudo: required
 services:
   - docker
-  - npm
 language: php
 php:
   - 5.6
-before_install:
-    - sudo apt-get install n
-    - sudo n 4.2.1
+before_script:
+    - npm install
 install:
-  - npm install
   - composer update
 script:
   - make test
