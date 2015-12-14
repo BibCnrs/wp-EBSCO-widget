@@ -10,11 +10,6 @@ $config = (object)[
             'validator' => 'url',
             'type' => 'url',
             'placeholder' => 'http://BibCnrsHost'
-        ],
-        'secret' => [
-            'description' => 'Secret to encode jwt token used by the widget to access the api.',
-            'validator' => 'password',
-            'type' => 'password',
         ]
     ],
     'home' => plugin_dir_path(__FILE__),
