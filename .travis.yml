@@ -4,8 +4,6 @@ services:
 language: php
 php:
   - 5.6
-before_script:
-    - npm install
 install:
   - composer update
 script:
