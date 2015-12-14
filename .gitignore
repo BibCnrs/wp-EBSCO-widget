@@ -1,3 +1,4 @@
 vendor
 composer.lock
 themes
+node_modules

@@ -9,7 +9,7 @@ npm:
   entrypoint: ['npm']
 
 composer:
-  image: composer/composer:1.0.0-alpha10
+  image: bibcnrs/composer-npm
   environment:
     http_proxy: ${http_proxy}
   volumes:
