@@ -9,7 +9,6 @@
 $getShortcode = function ($config) {
     return function ($atts, $content = null, $a) use ($config)
     {
-        var_dump($atts);
         $options = get_option($config->tag);
         $domain = $atts['domain'];
         // Define the URL path to the plugin...
