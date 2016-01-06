@@ -7,8 +7,7 @@
             var url = scriptTag.getAttribute('data-url');
             var domain = scriptTag.getAttribute('data-domain');
             var term = scriptTag.getAttribute('data-term');
-
-            React.render(React.createElement(EbscoWidget, { url: url, term: term, domain: domain }), rootElement);
+            ReactDom.render(React.createElement(EbscoWidget, { url: url, term: term, domain: domain }), rootElement);
         }
     };
-})(React, EbscoWidget);
+})(ReactDom, React, EbscoWidget);
