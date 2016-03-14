@@ -24,11 +24,13 @@ $getShortcode = function ($config) {
 
         // Enqueue the scripts if not already...
         if (!wp_script_is($config->tag, 'enqueued')) {
+            $string = file_get_contents($config->home . "node_modules/ebsco-widget/package.json");
+            $json = json_decode($string, true);
             wp_register_script(
                 $config->tag,
                 $config->url . 'node_modules/ebsco-widget/build/app.js',
                 [],
-                $config->version,
+                $json['version'],
                 true
             );
             wp_register_script(
