@@ -19,7 +19,13 @@ $getShortcode = function ($config) {
                 $config->tag,
                 $config->url . 'node_modules/ebsco-widget/build/app.css'
             );
+
+            wp_register_style(
+                $config->tag . '-loader',
+                $config->url . 'css/loader.css'
+            );
             wp_enqueue_style($config->tag);
+            wp_enqueue_style($config->tag . '-loader');
         }
 
         // Enqueue the scripts if not already...
