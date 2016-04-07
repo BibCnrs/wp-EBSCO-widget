@@ -11,21 +11,23 @@ $getShortcode = function ($config) {
     {
         $options = get_option($config->tag);
         $domain = $atts['domain'];
+        $string = file_get_contents($config->home . "node_modules/ebsco-widget/package.json");
+        $json = json_decode($string, true);
         // Define the URL path to the plugin...
         // Enqueue the styles in they are not already...
         if (!wp_style_is($config->tag, 'enqueued')) {
 
             wp_register_style(
                 $config->tag,
-                $config->url . 'node_modules/ebsco-widget/build/app.css'
+                $config->url . 'node_modules/ebsco-widget/build/app.css',
+                [],
+                $json['version']
             );
             wp_enqueue_style($config->tag);
         }
 
         // Enqueue the scripts if not already...
         if (!wp_script_is($config->tag, 'enqueued')) {
-            $string = file_get_contents($config->home . "node_modules/ebsco-widget/package.json");
-            $json = json_decode($string, true);
             wp_register_script(
                 $config->tag,
                 $config->url . 'node_modules/ebsco-widget/build/app.js',
