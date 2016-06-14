@@ -48,11 +48,10 @@ $getShortcode = function ($config) {
                 $config->version,
                 true
             );
-            $term = urldecode(get_query_var('search_term'));
             // add url attribute on script tag
             add_filter('script_loader_tag', function ( $tag, $handle ) use ($term, $domain, $config, $options) {
                 if ( $handle !== 'ebsco_widget-index' ) return $tag;
-                $addedAttr = sprintf(' id="%s" data-url="%s" data-term="%s" data-domain="%s" src', $handle, $options['url'], $term, $domain);
+                $addedAttr = sprintf(' id="%s" data-url="%s" data-db_url="%s" data-domain="%s" src', $handle, $options['url'], $options['db_url'], $domain);
 
                 return str_replace(' src', $addedAttr, $tag);
             }, 10, 2);
