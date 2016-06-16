@@ -32,12 +32,29 @@ $getShortcode = function ($config) {
             wp_enqueue_style($config->tag . '-loader');
         }
 
+        if(!wp_script_is('react', 'enqueued')) {
+            wp_register_script(
+                'react',
+                $config->url . 'node_modules/ebsco-widget/node_modules/react/dist/react-with-addons.min.js',
+                [],
+                '0.14.3'
+            );
+        }
+
+        if(!wp_script_is('react-dom', 'enqueued')) {
+            wp_register_script(
+                'react-dom',
+                $config->url . 'node_modules/ebsco-widget/node_modules/react-dom/dist/react-dom.min.js',
+                ['react'],
+                '0.14.3'
+            );
+        }
         // Enqueue the scripts if not already...
         if (!wp_script_is($config->tag, 'enqueued')) {
             wp_register_script(
                 $config->tag,
                 $config->url . 'node_modules/ebsco-widget/build/app.js',
-                [],
+                ['react', 'react-dom'],
                 $json['version'],
                 true
             );
