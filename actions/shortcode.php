@@ -32,6 +32,15 @@ $getShortcode = function ($config) {
             wp_enqueue_style($config->tag . '-loader');
         }
 
+        if(!wp_script_is('babel-polyfill', 'enqueued')) {
+            wp_register_script(
+                'babel-polyfill',
+                $config->url . 'node_modules/ebsco-widget/node_modules/babel-polyfill/dist/polyfill.min.js',
+                [],
+                '0.14.3'
+            );
+        }
+
         if(!wp_script_is('react', 'enqueued')) {
             wp_register_script(
                 'react',
@@ -54,7 +63,7 @@ $getShortcode = function ($config) {
             wp_register_script(
                 $config->tag,
                 $config->url . 'node_modules/ebsco-widget/build/app.js',
-                ['react', 'react-dom'],
+                ['babel-polyfill', 'react', 'react-dom'],
                 $json['version'],
                 true
             );
