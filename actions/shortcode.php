@@ -37,7 +37,7 @@ $getShortcode = function ($config) {
                 'babel-polyfill',
                 $config->url . 'node_modules/ebsco-widget/node_modules/babel-polyfill/dist/polyfill.min.js',
                 [],
-                '0.14.3'
+                '6.3.14'
             );
         }
 
