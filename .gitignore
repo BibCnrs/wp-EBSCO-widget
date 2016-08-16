@@ -2,3 +2,7 @@ vendor
 composer.lock
 themes
 node_modules
+.bowerrc
+composer-extra-assets.lock
+package.json
+bower.json
