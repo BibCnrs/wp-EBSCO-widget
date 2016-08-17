@@ -9,7 +9,7 @@
     },
     "require": {
         "php": ">=5.3.0",
-        "koala-framework/composer-extra-assets": "2.0.5"
+        "koala-framework/composer-extra-assets": "1.2.1"
     },
     "extra": {
         "require-npm": {
