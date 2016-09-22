@@ -76,9 +76,12 @@ $getShortcode = function ($config) {
                 true
             );
             // add url attribute on script tag
-            add_filter('script_loader_tag', function ( $tag, $handle ) use ($term, $domain, $config, $options) {
-                if ( $handle !== 'ebsco_widget-index' ) return $tag;
-                $addedAttr = sprintf(' id="%s" data-url="%s" data-db_url="%s" data-domain="%s" data-language="%s" src', $handle, $options['url'], $options['db_url'], $domain, $language);
+            add_filter('script_loader_tag', function ( $tag, $handle ) use ($term, $domain, $language, $config, $options) {
+                if ( $handle != 'ebsco_widget-index' ) return $tag;
+                $addedAttr = sprintf(
+                    ' id="%s" data-url="%s" data-db_url="%s" data-domain="%s" data-language="%s" src',
+                    $handle, $options['url'], $options['db_url'], $domain, $language
+                );
 
                 return str_replace(' src', $addedAttr, $tag);
             }, 10, 2);
