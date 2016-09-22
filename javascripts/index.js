@@ -7,7 +7,13 @@
             var url = scriptTag.getAttribute('data-url');
             var dbUrl = scriptTag.getAttribute('data-db_url');
             var domain = scriptTag.getAttribute('data-domain');
-            ReactDom.render(React.createElement(EbscoWidget, { url: url, dbUrl: dbUrl, domain: domain }), rootElement);
+            var language = scriptTag.getAttribute('data-language');
+            ReactDom.render(React.createElement(EbscoWidget, {
+                url: url,
+                dbUrl: dbUrl,
+                domain: domain,
+                language: language
+            }), rootElement);
         }
     };
 })(ReactDom, React, EbscoWidget);
