@@ -11,7 +11,7 @@ $getShortcode = function ($config) {
     {
         $options = get_option($config->tag);
         $domain = $atts['domain'];
-        $language = $atts['language'] || 'fr';
+        $language = $atts['language'] ? $atts['language'] : 'fr';
         $string = file_get_contents($config->home . "node_modules/ebsco-widget/package.json");
         $json = json_decode($string, true);
         // Define the URL path to the plugin...
