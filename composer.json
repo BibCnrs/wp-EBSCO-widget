@@ -3,7 +3,6 @@
     "description": "Wordpress plugin for EBSCO widget",
     "version": "0.9.0",
     "license": "CeCILL",
-    "type": "wordpress-plugin",
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
     },
