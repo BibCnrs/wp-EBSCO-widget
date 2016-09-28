@@ -1,0 +1,11 @@
+{
+  "name": "wp-EBSCO-widget",
+  "version": "0.9.1",
+  "description": "Wordpress plugin for EBSCO widget",
+  "main": "index.js",
+  "dependencies": {
+    "ebsco-widget": "latest"
+  },
+  "devDependencies": {},
+  "license": "CeCILL"
+}

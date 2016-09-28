@@ -23,11 +23,16 @@ stop: ## stop docker container
 composer: ## allow to run dockerized composer command
 	docker-compose run composer $(COMMAND_ARGS)
 
-install: ## install dependency
+composer-update: ## install dependency
 	docker-compose run composer update
 
 npm: ## allow to run dockerized npm command
 	docker-compose run npm $(COMMAND_ARGS)
+
+npm-install: ## allow to run dockerized npm command
+	docker-compose run npm install
+
+install: composer-update npm-install ## install dependency
 
 run-dev: ## run docker for dev enviroinment
 	docker-compose up
