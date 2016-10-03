@@ -12,7 +12,7 @@
     },
     "extra": {
         "require-npm": {
-            "ebsco-widget": "0.16.0"
+            "ebsco-widget": "latest"
         }
     }
 }
