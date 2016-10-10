@@ -21,16 +21,16 @@ stop: ## stop docker container
 	docker stop bibcnrs_db_1
 
 composer: ## allow to run dockerized composer command
-	docker-compose run composer $(COMMAND_ARGS)
+	docker-compose run --rm composer $(COMMAND_ARGS)
 
 install: ## install dependency
-	docker-compose run composer update
+	docker-compose run --rm composer update
 
 npm: ## allow to run dockerized npm command
-	docker-compose run npm $(COMMAND_ARGS)
+	docker-compose run --rm npm $(COMMAND_ARGS)
 
 run-dev: ## run docker for dev enviroinment
 	docker-compose up
 
 test: ## run test
-	docker-compose run phpunit test
+	docker-compose run --rm phpunit test
