@@ -21,6 +21,7 @@ wordpress:
     - ./:/var/www/html/wp-content/plugins/wp-ebsco-widget
   environment:
     http_proxy: ${http_proxy}
+    https_proxy: ${https_proxy}
     WP_URL: localhost:8082
   ports:
     - 8082:80

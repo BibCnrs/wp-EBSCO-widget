@@ -10,12 +10,6 @@ $config = (object)[
             'validator' => 'url',
             'type' => 'url',
             'placeholder' => 'http://BibCnrsHost'
-        ],
-        'db_url' => [
-            'description' => 'Url pour accéder au base de donnée depuis le plugin.',
-            'validator' => 'url',
-            'type' => 'url',
-            'placeholder' => '/bases-de-donnees/'
         ]
     ],
     'home' => plugin_dir_path(__FILE__),

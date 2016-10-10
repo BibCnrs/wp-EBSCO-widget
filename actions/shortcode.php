@@ -10,8 +10,6 @@ $getShortcode = function ($config) {
     return function ($atts, $content = null, $a) use ($config)
     {
         $options = get_option($config->tag);
-        $domain = $atts['domain'];
-        $language = $atts['language'] ? $atts['language'] : 'fr';
         $string = file_get_contents($config->home . "node_modules/ebsco-widget/package.json");
         $json = json_decode($string, true);
         // Define the URL path to the plugin...
@@ -76,11 +74,16 @@ $getShortcode = function ($config) {
                 true
             );
             // add url attribute on script tag
-            add_filter('script_loader_tag', function ( $tag, $handle ) use ($term, $domain, $language, $config, $options) {
+            add_filter('script_loader_tag', function ( $tag, $handle ) use ($atts, $config, $options) {
                 if ( $handle != 'ebsco_widget-index' ) return $tag;
+
+                $domain = $atts['domain'];
+                $dbUrl = $atts['db_url'];
+                $language = $atts['language'] ? $atts['language'] : 'fr';
+
                 $addedAttr = sprintf(
                     ' id="%s" data-url="%s" data-db_url="%s" data-domain="%s" data-language="%s" src',
-                    $handle, $options['url'], $options['db_url'], $domain, $language
+                    $handle, $options['url'], $dbUrl, $domain, $language
                 );
 
                 return str_replace(' src', $addedAttr, $tag);

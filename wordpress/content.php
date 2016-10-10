@@ -14,7 +14,7 @@
 	<?php
 		// Post thumbnail.
 		twentyfifteen_post_thumbnail();
-		echo do_shortcode('[ebsco_widget]');
+		echo do_shortcode('[ebsco_widget db_url="http://google.fr"]');
 	?>
 
 	<header class="entry-header">
