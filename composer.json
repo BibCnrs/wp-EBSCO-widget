@@ -1,7 +1,7 @@
 {
     "name": "bibcnrs/wp-ebsco-widget",
     "description": "Wordpress plugin for EBSCO widget",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "license": "CeCILL",
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
@@ -12,7 +12,7 @@
     },
     "extra": {
         "require-npm": {
-            "ebsco-widget": "1.0.13"
+            "ebsco-widget": "1.0.14"
         }
     }
 }
