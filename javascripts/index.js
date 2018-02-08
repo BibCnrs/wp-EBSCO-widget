@@ -1,4 +1,4 @@
-(function () {
+(function (ReactDOM, React, EbscoWidget) {
     'use strict';
     document.onreadystatechange = function () {
         if (document.readyState === 'complete') {
@@ -8,7 +8,7 @@
             var dbUrl = scriptTag.getAttribute('data-db_url');
             var domain = scriptTag.getAttribute('data-domain');
             var language = scriptTag.getAttribute('data-language');
-            ReactDom.render(React.createElement(EbscoWidget, {
+            ReactDOM.render(React.createElement(EbscoWidget, {
                 url: url,
                 dbUrl: dbUrl,
                 domain: domain,
@@ -16,4 +16,4 @@
             }), rootElement);
         }
     };
-})(ReactDom, React, EbscoWidget);
+})(ReactDOM, React, window.EbscoWidget);

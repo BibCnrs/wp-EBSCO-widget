@@ -43,18 +43,18 @@ $getShortcode = function ($config) {
         if(!wp_script_is('react', 'enqueued')) {
             wp_register_script(
                 'react',
-                $config->url . 'node_modules/ebsco-widget/node_modules/react/dist/react-with-addons.min.js',
+                $config->url . 'node_modules/ebsco-widget/node_modules/react/umd/react.production.min.js',
                 [],
-                '0.14.3'
+                '16.2.0'
             );
         }
 
         if(!wp_script_is('react-dom', 'enqueued')) {
             wp_register_script(
                 'react-dom',
-                $config->url . 'node_modules/ebsco-widget/node_modules/react-dom/dist/react-dom.min.js',
+                $config->url . 'node_modules/ebsco-widget/node_modules/react-dom/umd/react-dom.production.min.js',
                 ['react'],
-                '0.14.3'
+                '16.2.0'
             );
         }
         // Enqueue the scripts if not already...
