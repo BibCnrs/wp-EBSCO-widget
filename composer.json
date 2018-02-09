@@ -2,7 +2,7 @@
     "name": "bibcnrs/wp-ebsco-widget",
     "description": "Wordpress plugin for EBSCO widget",
     "version": "1.0.8",
-    "license": "CeCILL",
+    "license": "CeCILL-2.1",
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
     },
