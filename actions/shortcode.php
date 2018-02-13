@@ -34,16 +34,16 @@ $getShortcode = function ($config) {
         if(!wp_script_is('babel-polyfill', 'enqueued')) {
             wp_register_script(
                 'babel-polyfill',
-                $config->url . 'node_modules/ebsco-widget/node_modules/babel-polyfill/dist/polyfill.min.js',
+                $config->url . 'node_modules/babel-polyfill/dist/polyfill.min.js',
                 [],
-                '6.3.14'
+                '6.26.0'
             );
         }
 
         if(!wp_script_is('react', 'enqueued')) {
             wp_register_script(
                 'react',
-                $config->url . 'node_modules/ebsco-widget/node_modules/react/umd/react.production.min.js',
+                $config->url . 'node_modules/react/umd/react.production.min.js',
                 [],
                 '16.2.0'
             );
@@ -52,7 +52,7 @@ $getShortcode = function ($config) {
         if(!wp_script_is('react-dom', 'enqueued')) {
             wp_register_script(
                 'react-dom',
-                $config->url . 'node_modules/ebsco-widget/node_modules/react-dom/umd/react-dom.production.min.js',
+                $config->url . 'node_modules/react-dom/umd/react-dom.production.min.js',
                 ['react'],
                 '16.2.0'
             );
