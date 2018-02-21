@@ -14,7 +14,6 @@
 	<?php
 		// Post thumbnail.
 		twentyfifteen_post_thumbnail();
-		echo do_shortcode('[ebsco_widget db_url="http://google.fr"]');
 	?>
 
 	<header class="entry-header">
@@ -25,9 +24,11 @@
 				the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
 			endif;
 		?>
+		<?php echo do_shortcode('[ebsco_widget_header]'); ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
+		<?php echo do_shortcode('[ebsco_widget db_url="http://google.fr"]'); ?>
 		<?php
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
