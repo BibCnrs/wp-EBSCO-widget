@@ -12,7 +12,7 @@ $getValidateSettings = function ($config) use ($validators) {
     return function($input) use ($config, $validators)
     {
         foreach ($input AS $key => $value) {
-            if ($value == '') {
+            if (!isset($value)) {
                 unset($input[$key]);
                 continue;
             }

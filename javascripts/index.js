@@ -5,14 +5,15 @@
             var rootElement = document.getElementById('ebsco_widget');
             var scriptTag = document.getElementById('ebsco_widget-index');
             var url = scriptTag.getAttribute('data-url');
-            var dbUrl = scriptTag.getAttribute('data-db_url');
             var domain = scriptTag.getAttribute('data-domain');
             var language = scriptTag.getAttribute('data-language');
+            var publicationSort = scriptTag.getAttribute('data-publication_sort');
+            console.log({ publicationSort });
             ReactDOM.render(React.createElement(EbscoWidget, {
                 url: url,
-                dbUrl: dbUrl,
                 domain: domain,
-                language: language
+                language: language,
+                publicationSort: publicationSort == 1 ? true : false
             }), rootElement);
         }
     };
