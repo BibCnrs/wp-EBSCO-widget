@@ -13,7 +13,6 @@ $getAddSettingsField = function ($config) {
             'id' => sprintf('%s_%s' , $config->tag, $options['id']),
             'name' => sprintf('%s[%s]', $config->tag, $options['id']),
             'type' => (isset( $options['type'] ) ? $options['type'] : 'text'),
-            'class' => 'regular-text',
             'value' => (array_key_exists('default', $options) ? $options['default'] : null)
         ];
         if (isset( $pluginOptions[$options['id']])) {

@@ -28,7 +28,7 @@
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
-		<?php echo do_shortcode('[ebsco_widget db_url="http://google.fr"]'); ?>
+		<?php echo do_shortcode('[ebsco_widget]'); ?>
 		<?php
 			/* translators: %s: Name of current post */
 			the_content( sprintf(

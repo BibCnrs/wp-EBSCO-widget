@@ -69,7 +69,7 @@ $getShortcode = function ($config) {
             wp_register_script(
                 $config->tag.'-index',
                 $config->url . 'javascripts/index.js',
-                ['jquery', $config->tag],
+                [$config->tag],
                 $config->version,
                 true
             );
@@ -78,12 +78,12 @@ $getShortcode = function ($config) {
                 if ( $handle != 'ebsco_widget-index' ) return $tag;
 
                 $domain = $atts['domain'];
-                $dbUrl = $atts['db_url'];
                 $language = $atts['language'] ? $atts['language'] : 'fr';
+                $publicationSort = $options['publication_sort'] == true ? 1 : 0;
 
                 $addedAttr = sprintf(
-                    ' id="%s" data-url="%s" data-db_url="%s" data-domain="%s" data-language="%s" src',
-                    $handle, $options['url'], $dbUrl, $domain, $language
+                    ' id="%s" data-url="%s" data-domain="%s" data-language="%s" data-publication_sort="%s" src',
+                    $handle, $options['url'], $domain, $language, $publicationSort
                 );
 
                 return str_replace(' src', $addedAttr, $tag);

@@ -7,5 +7,8 @@ $validators = [
             return $value;
         }
         throw new Exception("EbscoWidget: L'url est invalide.");
+    },
+    'publication_sort' => function($value) {
+        return true;
     }
 ];

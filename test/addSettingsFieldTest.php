@@ -14,6 +14,10 @@ function get_option() {
     ];
 }
 
+function checked($value) {
+    echo '';
+}
+
 class AddSettingsFieldTest extends PHPUnit_Framework_TestCase
 {
     public function testDefaultTemplate() {
@@ -29,7 +33,7 @@ class AddSettingsFieldTest extends PHPUnit_Framework_TestCase
         ]);
         $this->expectOutputString(
 '<label>
-    <input id="tag_field" name="tag[field]" type="text" class="regular-text" value="" />
+    <input id="tag_field" name="tag[field]" type="text" value="" />
     field description</label>
 ');
     }
@@ -50,7 +54,7 @@ class AddSettingsFieldTest extends PHPUnit_Framework_TestCase
         ]);
         $this->expectOutputString(
 '<label>
-    <input id="tag_urlField" name="tag[urlField]" type="url" class="regular-text" value="default value" placeholder="enter url" />
+    <input id="tag_urlField" name="tag[urlField]" type="url" value="default value" placeholder="enter url" />
     description for url</label>
 ');
     }
@@ -71,8 +75,27 @@ class AddSettingsFieldTest extends PHPUnit_Framework_TestCase
         ]);
         $this->expectOutputString(
 '<label>
-    <input id="tag_secretField" name="tag[secretField]" type="secret" class="regular-text" value="default value" placeholder="enter secret" />
+    <input id="tag_secretField" name="tag[secretField]" type="secret" value="default value" placeholder="enter secret" />
     description for secret</label>
+');
+    }
+
+    public function testCheckboxTemplate() {
+        require dirname(__FILE__).DIRECTORY_SEPARATOR . '..'.DIRECTORY_SEPARATOR.'actions'.DIRECTORY_SEPARATOR.'add-settings-field.php';
+        $addSettingsField = $getAddSettingsField((object)[
+            'tag' => 'tag',
+            'views' => dirname(__FILE__).DIRECTORY_SEPARATOR . '..'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR
+        ]);
+
+        $addSettingsField([
+            'id' => 'checkField',
+            'type' => 'checkbox',
+            'description' => 'description for checkbox'
+        ]);
+        $this->expectOutputString(
+'<label>
+    <input id="tag_checkField" name="tag[checkField]" type="checkbox" value="" />
+    description for checkbox</label>
 ');
     }
 }

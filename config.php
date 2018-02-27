@@ -3,13 +3,19 @@
 $config = (object)[
     'tag' => 'ebsco_widget',
     'name' => 'EBBSCO Widget',
-    'version' => '3.0.2',
+    'version' => '3.1.1',
     'settings' => [
         'url' => [
             'description' => 'Url pour accéder à BibCnrs Api.',
             'validator' => 'url',
             'type' => 'url',
-            'placeholder' => 'http://BibCnrsHost'
+            'placeholder' => 'http://BibCnrsHost',
+            'class' => 'regular-text',
+        ],
+        'publication_sort' => [
+            'description' => 'Activation du tri dans publication',
+            'validator' => 'publication_sort',
+            'type' => 'checkbox',
         ]
     ],
     'home' => plugin_dir_path(__FILE__),
