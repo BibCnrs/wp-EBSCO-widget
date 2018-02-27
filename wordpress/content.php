@@ -17,6 +17,7 @@
 	?>
 
 	<header class="entry-header">
+		<?php echo do_shortcode('[ebsco_widget_connection]'); ?>
 		<?php
 			if ( is_single() ) :
 				the_title( '<h1 class="entry-title">', '</h1>' );
