@@ -8,7 +8,7 @@
             var domain = scriptTag.getAttribute('data-domain');
             var language = scriptTag.getAttribute('data-language');
             var publicationSort = scriptTag.getAttribute('data-publication_sort');
-            console.log({ publicationSort });
+
             ReactDOM.render(React.createElement(EbscoWidget, {
                 url: url,
                 domain: domain,
