@@ -27,14 +27,12 @@ if (   file_exists( $composer_autoload = __DIR__ . '/vendor/autoload.php' ) /* c
 $init = function () use($config) {
     require $config->actions . 'shortcode.php';
     require $config->actions . 'headerShortcode.php';
-    require $config->actions . 'connectionShortcode.php';
     add_filter('query_vars', function ($vars) {
         $vars[] = 'search_term';
         return $vars;
     });
     add_shortcode($config->tag, $getShortcode($config));
     add_shortcode($config->tag . '_header', $getHeaderShortcode($config));
-    add_shortcode($config->tag . '_connection', $getConnectionShortcode($config));
     if (is_admin()) {
         require $config->actions . 'admin_init.php';
         add_action('admin_init', $getAdminInit($config));
