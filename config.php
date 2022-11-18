@@ -3,7 +3,7 @@
 $config = (object)[
     'tag' => 'ebsco_widget',
     'name' => 'EBBSCO Widget',
-    'version' => '3.17.8',
+    'version' => '3.17.9',
     'settings' => [
         'url' => [
             'description' => 'Url pour accéder à BibCnrs Api.',
