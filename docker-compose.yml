@@ -1,33 +1,36 @@
-npm:
-  image: node:4.1.2
-  environment:
-    http_proxy: ${http_proxy}
-    https_proxy: ${https_proxy}
-  volumes:
-    - .:/app
-  working_dir: /app
-  entrypoint: ['npm']
+version: '3.5'
 
-composer:
-  image: bibcnrs/composer-npm:1.3
-  environment:
-    http_proxy: ${http_proxy}
-  volumes:
-    - $PWD:/app
+services:
+  npm:
+    image: node:4.1.2
+    environment:
+      http_proxy: ${http_proxy}
+      https_proxy: ${https_proxy}
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: ['npm']
 
-wordpress:
-  build: ./wordpress
-  volumes:
-    - ./:/var/www/html/wp-content/plugins/wp-ebsco-widget
-  environment:
-    http_proxy: ${http_proxy}
-    https_proxy: ${https_proxy}
-    WP_URL: localhost:8082
-  ports:
-    - 8082:80
-    - 3306:3306
+  composer:
+    image: bibcnrs/composer-npm:1.3
+    environment:
+      http_proxy: ${http_proxy}
+    volumes:
+      - $PWD:/app
 
-phpunit:
-  image: phpunit/phpunit:5.0.3
-  volumes:
-    - .:/app
+  wordpress:
+    build: ./wordpress
+    volumes:
+      - ./:/var/www/html/wp-content/plugins/wp-ebsco-widget
+    environment:
+      http_proxy: ${http_proxy}
+      https_proxy: ${https_proxy}
+      WP_URL: localhost:8082
+    ports:
+      - 8082:80
+      - 3306:3306
+
+  phpunit:
+    image: phpunit/phpunit:5.0.3
+    volumes:
+      - .:/app
