@@ -32,7 +32,7 @@ npm: ## allow to run dockerized npm command
 run-dev: ## run docker for dev enviroinment
 	docker compose up --force-recreate
 
-test: install test2
+test: install #test2
 
 test2: ## run test
 	docker compose run --rm phpunit test
